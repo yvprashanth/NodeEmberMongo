@@ -9,7 +9,6 @@
     <link rel="icon" href="../../favicon.ico">
     <title>Prashanth Yerramilli Starter Template</title>
   </head>
-{{outlet}}
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -20,13 +19,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Brand Protection</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active">{{#link-to 'index'}}Home{{/link-to}}</li>
             <li>{{#link-to 'about'}}About{{/link-to}}</li>
-            <li><a href="#contact">Contact</a></li>
+            <li>{{#link-to 'contact'}}Contact{{/link-to}}</li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -40,6 +39,7 @@
 		<div>
 			{{#each model as |item|}} 
 				{{item.title}}
+				<h3>{{#link-to 'contact'}}Book{{/link-to}}</h3>
 			{{/each}}
 		</div>
       </div>
