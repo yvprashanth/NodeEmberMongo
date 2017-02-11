@@ -3,11 +3,11 @@
 {{#each model as |goal|}}
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">{{goal.name}}</h3>
+      <h3 class="panel-title">{{goal.title}}</h3>
     </div>
     <div class="panel-body">
-      <p>Address: {{goal.address}}</p>
-      <p>Phone: {{goal.phone}}</p>
+      <p>Owner: {{goal.owner}}</p>
+      <p>Notes: {{goal.notes}}</p>
     </div>
   </div>
 {{/each}}
