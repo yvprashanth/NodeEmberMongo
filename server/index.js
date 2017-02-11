@@ -65,7 +65,8 @@ router.route('/goals')
 		Goal.find(function(err, goals) {
 			if (err)
 				res.send(err);
-			res.json(goals);
+			res.send({goal:goals});
+			// res.json(goals);
 		});
 	});
 
