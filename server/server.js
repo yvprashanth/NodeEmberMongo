@@ -1,7 +1,16 @@
 var express = require('express');
+var router = express.Router();              // get an instance of the express Router
+var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var noteModel = require('./note');
+var morgan = require('morgan');
 
 var app = express();
+app.use(morgan('dev'));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -12,20 +21,34 @@ app.use(function(req, res, next) {
 
 mongoose.connect('mongodb://localhost/emberMongo');
 
-var noteSchema = new mongoose.Schema({
-	title: 'string',
-	content: 'string',
-	author: 'string'
-});
-
-var NoteModel = mongoose.model('note',noteSchema);
-
 app.get('/api/',function(req,res) {
 	res.send('Working\n');
 });
 
+app.get('/', function(req, res){
+	res.sendFile(__dirname + '/index.html');
+});
+
+app.post('/quotes', function(req, res) {
+	var newNote = User({
+		title: 'Test Title',
+		content: 'This is another Content',
+		author: 'Prashanth Yerramilli'
+	});
+	// save the user
+	newNote.save(function(err) {
+		if (err) throw err;
+		console.log('User created!');
+	});
+  	console.log('Hellooooooooooooooooo!');
+});
+
+app.get('/db', function(req, res){
+
+});
+
 app.get('/api/notes', function(req,res) {
-	NoteModel.find({},function(err,docs) {
+	noteModel.find({},function(err,docs) {
 		if(err) {
 			res.send({error:err});
 		}
