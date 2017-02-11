@@ -1,6 +1,7 @@
 {
   "name": "client",
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "bootstrap-datepicker": "^1.6.4"
   }
 }

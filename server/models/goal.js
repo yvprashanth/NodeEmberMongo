@@ -7,7 +7,8 @@ var GoalSchema   = new Schema({
     owner : String,
     duedate : Date,
     status : String,
-    notes : String
+    notes : String,
+    sims : { type : Array , "default" : [] }
 });
 
 module.exports = mongoose.model('Goal', GoalSchema);
