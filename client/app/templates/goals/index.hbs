@@ -1,0 +1,13 @@
+<h2>List of Goals</h2>
+
+{{#each model as |goal|}}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{goal.name}}</h3>
+    </div>
+    <div class="panel-body">
+      <p>Address: {{goal.address}}</p>
+      <p>Phone: {{goal.phone}}</p>
+    </div>
+  </div>
+{{/each}}
