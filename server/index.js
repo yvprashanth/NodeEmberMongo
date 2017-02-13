@@ -52,12 +52,22 @@ router.route('/goals')
 	// create a Goal (accessed at POST http://localhost:4500/goals)
 	.post(function(req, res) {
 		var goal = new Goal();		// create a new instance of the goal model
-		goal.name = req.body.title;  // set the goals name (comes from the request)
 
-		goal.save(function(err) {
+		if(req.body.goal){
+			goal.title = req.body.goal.title;
+			goal.status = req.body.goal.status;
+			goal.notes = req.body.goal.notes;
+			goal.duedate = req.body.goal.duedate;
+			goal.number = req.body.goal.number;
+			goal.sims = req.body.goal.sims;
+		}
+		// goal.name = req.body.title;  // set the goals name (comes from the request)
+
+		goal.save(function(err, obj) {
 			if (err)
 				res.send(err);
-			res.json({ message: 'Goal created!' });
+			// var result = { goal : obj};
+			res.json({goal : obj});
 		});
 	})
 	// get all the goals (accessed at GET http://localhost:4500/api/goals)
@@ -101,11 +111,18 @@ router.route('/goals/:goal_id')
 		Goal.findById(req.params.bear_id, function(err, goal) {
 			if (err)
 				res.send(err);
-			goal.name = req.body.name;
-			goal.save(function(err) {
+			if(req.body.goal){
+				goal.title = req.body.goal.title;
+				goal.status = req.body.goal.status;
+				goal.notes = req.body.goal.notes;
+				goal.duedate = req.body.goal.duedate;
+				goal.number = req.body.goal.number;
+				goal.sims = req.body.goal.sims;
+			}
+			goal.save(function(err, response) {
 				if (err)
 					res.send(err);
-				res.json({ message: 'goal updated!' });
+				res.json({ goal: response });
 			});
 		});
 	})

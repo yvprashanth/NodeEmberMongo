@@ -9,7 +9,12 @@ export default Ember.Route.extend({
   actions: {
 
     saveGoal(newGoal) {
-      newGoal.save().then(() => this.transitionTo('goals'));
+      newGoal.save().then((response) => {
+        debugger;
+        this.transitionTo('goals')
+      });
+
+      // newGoal.save().then(() => this.transitionTo('goals'));
     },
 
     willTransition() {
