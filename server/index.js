@@ -52,9 +52,16 @@ router.route('/goals')
 	// create a Goal (accessed at POST http://localhost:4500/goals)
 	.post(function(req, res) {
 		var goal = new Goal();		// create a new instance of the goal model
-		goal.title = req.body.goal.title;  // set the goals name (comes from the request)
-		goal.owner = req.body.goal.owner;
-		goal.notes = req.body.goal.notes;
+		if(!req.body.goal){
+			goal.title = req.body.title;  // set the goals name (comes from the request)
+			goal.owner = req.body.owner;
+			goal.notes = req.body.notes;
+		} else {
+			goal.title = req.body.goal.title;  // set the goals name (comes from the request)
+			goal.owner = req.body.goal.owner;
+			goal.notes = req.body.goal.notes;
+		}
+		
 		goal.save(function(err) {
 			if (err)
 				res.send(err);
