@@ -52,12 +52,13 @@ router.route('/goals')
 	// create a Goal (accessed at POST http://localhost:4500/goals)
 	.post(function(req, res) {
 		var goal = new Goal();		// create a new instance of the goal model
-		goal.name = req.body.title;  // set the goals name (comes from the request)
-
+		goal.title = req.body.goal.title;  // set the goals name (comes from the request)
+		goal.owner = req.body.goal.owner;
+		goal.notes = req.body.goal.notes;
 		goal.save(function(err) {
 			if (err)
 				res.send(err);
-			res.json({ message: 'Goal created!' });
+			res.json({ id:'123', message: 'Goal created!' });
 		});
 	})
 	// get all the goals (accessed at GET http://localhost:4500/api/goals)

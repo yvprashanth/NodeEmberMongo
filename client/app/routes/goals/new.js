@@ -6,9 +6,13 @@ export default Ember.Route.extend({
     return this.store.createRecord('goal');
   },
 
-  actions: {
+  isValid : function(){
+    debugger;
+  },
 
+  actions: {
     saveGoal(newGoal) {
+      debugger;
       newGoal.save().then(() => this.transitionTo('goals'));
     },
 
