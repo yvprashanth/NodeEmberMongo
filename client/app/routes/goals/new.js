@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-
   model() {
     return this.store.createRecord('goal');
   },
@@ -13,7 +12,7 @@ export default Ember.Route.extend({
   actions: {
     saveGoal(newGoal) {
       debugger;
-      newGoal.save().then(() => this.transitionTo('goals'));
+      newGoal.save().then(() => this.transitionTo('goals.all'));
     },
 
     willTransition() {

@@ -55,10 +55,10 @@ router.route('/goals')
 		goal.title = req.body.goal.title;  // set the goals name (comes from the request)
 		goal.owner = req.body.goal.owner;
 		goal.notes = req.body.goal.notes;
-		goal.save(function(err) {
+		goal.save(function(err, response) {
 			if (err)
 				res.send(err);
-			res.json({ id:'123', message: 'Goal created!' });
+			res.json({ goal: response });
 		});
 	})
 	// get all the goals (accessed at GET http://localhost:4500/api/goals)
