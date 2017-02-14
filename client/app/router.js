@@ -12,6 +12,9 @@ Router.map(function() {
   this.route('newgoal');
   this.route('goals', function() {
     this.route('new');
+    this.route('index');
+    this.route('all');
+    this.route('edit', {path : '/:goal_id/edit'});
   });
 });
 
