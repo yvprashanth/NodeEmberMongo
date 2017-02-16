@@ -6,6 +6,7 @@ export default DS.Model.extend({
     owner : DS.attr('string'),
     duedate : DS.attr('date'),
     status : DS.attr('string'),
+    blockedreason : DS.attr('string'),
     notes : DS.attr('string'),
     sims : DS.hasMany('sim')
 });

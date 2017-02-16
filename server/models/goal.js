@@ -7,6 +7,7 @@ var GoalSchema   = new Schema({
     owner : String,
     duedate : Date,
     status : String,
+    blockedreason : String,
     notes : String,
     sims : { type : Array , "default" : [] }
 });

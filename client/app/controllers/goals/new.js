@@ -9,6 +9,9 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   statusStates : statusStates,
   statusState : statusStates[0],
+  showBlockedReason : function(){
+     return this.get('statusState').key === 3 
+  }.property('statusState'),
   actions : {
     foo(state) {
         debugger;
