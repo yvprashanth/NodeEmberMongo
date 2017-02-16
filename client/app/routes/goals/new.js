@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  beforeModel: function () {
+    // Ember.$('#people').peoplePicker({});
+  },
+  
   model() {
     return this.store.createRecord('goal');
   },
@@ -11,7 +15,6 @@ export default Ember.Route.extend({
 
   actions: {
     saveGoal(newGoal) {
-      debugger;
       newGoal.save().then(() => this.transitionTo('goals.all'));
     },
 

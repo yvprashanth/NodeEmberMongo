@@ -6,9 +6,10 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
   });
-
+  app.import('vendor/oneg.js');
   // Use `app.import` to add additional libraries to the generated
   // output files.
+
   //
   // If you need to use different assets in different
   // environments, specify an object as the first parameter. That

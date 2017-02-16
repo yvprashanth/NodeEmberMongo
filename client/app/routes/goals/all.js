@@ -7,7 +7,7 @@ export default Ember.Route.extend({
     Ember.Object.create({ key: 3, value : 'Blocked' }),
     Ember.Object.create({ key: 4, value : 'Complete' })
   ],
-  names: ['Stefan', 'Miguel', 'Tomster', 'Pluto'],
+
   model() {
     return this.store.findAll('goal');
   },

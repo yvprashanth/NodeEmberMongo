@@ -1,14 +1,14 @@
 import Ember from 'ember';
-
-export default Ember.Controller.extend({
-  statusStates : [
-    { key: 1, value : 'Not Started' },
+ const statusStates = [
+    { key: 1, value : 'Not Started'},
     { key: 2, value : 'In Progress' },
     { key: 3, value : 'Blocked' },
     { key: 4, value : 'Complete' }
-  ],
-  names: ['Not Started', 'In Progress', 'Blocked', 'Complete'],
-  statusState : '',
+  ];
+
+export default Ember.Controller.extend({
+  statusStates : statusStates,
+  statusState : statusStates[0],
   actions : {
     foo(state) {
         debugger;
