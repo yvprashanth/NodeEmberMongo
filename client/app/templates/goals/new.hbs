@@ -36,14 +36,13 @@
     </div>
 
     {{#if showBlockedReason}}
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Blocked Reason</label>
-        <div class="col-sm-10">
-          {{input type="text" value=model.blockedreason class="form-control" placeholder="Blocked Reason" id="blockedreason"}}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Owner</label>
+            <div class="col-sm-10">
+            {{input type="text" value=model.blockedreason class="form-control" placeholder="Please enter Blocked Reason" id="blockedreason"}}
+            </div>
         </div>
-    </div>
     {{/if}}
-
     <div class="form-group">
         <label class="col-sm-2 control-label">Notes</label>
         <div class="col-sm-10">

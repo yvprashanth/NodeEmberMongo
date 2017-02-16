@@ -14,7 +14,6 @@ export default Ember.Controller.extend({
   }.property('statusState'),
   actions : {
     foo(state) {
-        debugger;
         this.set('statusState', state);
     }
   }
