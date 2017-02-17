@@ -9,12 +9,18 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   statusStates : statusStates,
   statusState : statusStates[0],
+  isValid : function(){
+    return true;
+  }.property('model'),
   showBlockedReason : function(){
-     return this.get('statusState').key === 3 
-  }.property('statusState'),
+    if(this.get('model.status'))
+      return this.get('model.status').key === 3;
+    return false;
+  }.property('model.status'),
   actions : {
     foo(state) {
-        this.set('statusState', state);
+        debugger;
+        this.set('model.status', state);
     }
   }
 });

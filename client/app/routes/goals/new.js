@@ -15,6 +15,7 @@ export default Ember.Route.extend({
 
   actions: {
     saveGoal(newGoal) {
+      debugger;
       newGoal.save().then(() => this.transitionTo('goals.all'));
       // newGoal.save().then(() => this.transitionTo('goals'));
     },

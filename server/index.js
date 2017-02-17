@@ -53,13 +53,35 @@ router.route('/goals')
 	.post(function(req, res) {
 		var goal = new Goal();		// create a new instance of the goal model
 
+
+		// number : Number,
+		// title: String,
+		// owner : String,
+		// duedate : Date,
+		// status : String,
+		// blockedreason : String,
+		// notes : String,
+		// team : { type : Array , "default" : [] },
+		// sims : { type : Array , "default" : [] }
+
+
+
 		if(!req.body.goal){
 			goal.title = req.body.title;  // set the goals name (comes from the request)
 			goal.owner = req.body.owner;
+			goal.status = req.body.status;
+			goal.blockedreason = req.body.blockedreason;
+			goal.duedate = req.body.duedate;
+			goal.team = req.body.team;
 			goal.notes = req.body.notes;
 		} else {
 			goal.title = req.body.goal.title;  // set the goals name (comes from the request)
 			goal.owner = req.body.goal.owner;
+			goal.owner = req.body.goal.owner;
+			goal.status = req.body.goal.status;
+			goal.blockedreason = req.body.goal.blockedreason;
+			goal.duedate = req.body.goal.duedate;
+			goal.team = req.body.goal.team;
 			goal.notes = req.body.goal.notes;
 		}
 		
@@ -93,12 +115,12 @@ router.route('/notes')
 		});
 	});
 
-// on routes that end in /goals/:bear_id
+// on routes that end in /goals/:goal_id
 // ----------------------------------------------------
 router.route('/goals/:goal_id')
 	// get the goal with that id
 	.get(function(req, res) {
-		Goal.findById(req.params.bear_id, function(err, goal) {
+		Goal.findById(req.params.goal_id, function(err, goal) {
 			if (err)
 				res.send(err);
 			res.json(goal);
@@ -107,14 +129,32 @@ router.route('/goals/:goal_id')
 
 	// update the goal with this id
 	.put(function(req, res) {
-		Goal.findById(req.params.bear_id, function(err, goal) {
+		Goal.findById(req.params.goal_id, function(err, goal) {
 			if (err)
 				res.send(err);
-			goal.name = req.body.name;
-			goal.save(function(err) {
+
+			if(!req.body.goal){
+				goal.title = req.body.title;  // set the goals name (comes from the request)
+				goal.owner = req.body.owner;
+				goal.status = req.body.status;
+				goal.blockedreason = req.body.blockedreason;
+				goal.duedate = req.body.duedate;
+				goal.team = req.body.team;
+				goal.notes = req.body.notes;
+			} else {
+				goal.title = req.body.goal.title;  // set the goals name (comes from the request)
+				goal.owner = req.body.goal.owner;
+				goal.owner = req.body.goal.owner;
+				goal.status = req.body.goal.status;
+				goal.blockedreason = req.body.goal.blockedreason;
+				goal.duedate = req.body.goal.duedate;
+				goal.team = req.body.goal.team;
+				goal.notes = req.body.goal.notes;
+			}	
+			goal.save(function(err, response) {
 				if (err)
 					res.send(err);
-				res.json({ message: 'goal updated!' });
+				res.json({ goal: response });
 			});
 		});
 	})
@@ -122,7 +162,7 @@ router.route('/goals/:goal_id')
 	// delete the goal with this id
 	.delete(function(req, res) {
 		Goal.remove({
-			_id: req.params.bear_id
+			_id: req.params.goal_id
 		}, function(err, goal) {
 			if (err)
 				res.send(err);
@@ -138,4 +178,3 @@ app.use('/api', router);
 // =============================================================================
 app.listen(port);
 console.log('Magic happens on port ' + port);
-0

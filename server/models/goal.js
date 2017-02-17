@@ -9,6 +9,7 @@ var GoalSchema   = new Schema({
     status : String,
     blockedreason : String,
     notes : String,
+    team : { type : Array , "default" : [] },
     sims : { type : Array , "default" : [] }
 });
 
