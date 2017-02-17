@@ -6,11 +6,24 @@
       <h3 class="panel-title">{{goal.title}}</h3>
     </div>
     <div class="panel-body">
-      <p>Goal Number: {{goal.number}}</p>
-      <p>Owner: {{goal.owner}}</p>
-      <p>Due Date: {{goal.duedate}}</p>
-      <p>Status: {{goal.status}}</p>
-      <p>Notes: {{goal.notes}}</p>
+      <p style="display: inline; font-weight: bold">Goal Number : </p> 
+      <p style="display: inline"> {{goal.number}}</p>
+      <br />
+
+      <p style="display: inline; font-weight: bold">Goal Owner : </p> 
+      <p style="display: inline"> {{goal.owner}}</p>
+      <br />
+      <p style="display: inline; font-weight: bold">Due Date : </p>
+      <p style="display: inline;"> {{goal.duedate}}</p>
+      <br />
+
+      <p style="display: inline; font-weight: bold">Status : </p>
+      <p style="display: inline;"> {{goal.status}}</p>
+      <br />
+      
+      <p style="display: inline; font-weight: bold">Notes : </p>
+      <p style="display: inline;"> {{goal.notes}}</p>
+      <br />     
     </div>
      <div class="panel-footer text-right">
           {{#link-to 'goals.edit' goal.id class='btn btn-success btn-xs'}}Edit{{/link-to}}

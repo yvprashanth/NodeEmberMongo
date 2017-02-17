@@ -13,8 +13,9 @@ export default Ember.Controller.extend({
     return true;
   }.property('model'),
   showBlockedReason : function(){
-    if(this.get('model.status'))
+    if(this.get('model.status')){
       return this.get('model.status').key === 3;
+    }
     return false;
   }.property('model.status'),
   actions : {
