@@ -13,7 +13,6 @@ export default Ember.Route.extend({
     },
 
     willTransition(transition) {
-
       let model = this.controller.get('model');
 
       if (model.get('hasDirtyAttributes')) {

@@ -17,15 +17,15 @@ export default Ember.Route.extend({
     },
     deleteGoal(goal) {
       let confirmation = confirm('Are you sure?');
-
       if (confirmation) {
         debugger;
         var that = this;
+        goal.destroyRecord();
         this.store.find('goal', goal.id).then(function (post) {
           post.deleteRecord();
           post.get('isDeleted'); // => true
           post.save(); // => DELETE to /posts/1
-          that.goal.destroyRecord();
+          
         });
         
       }
