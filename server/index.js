@@ -8,6 +8,9 @@ var app        = express();
 var morgan     = require('morgan');
 var noteModel = require('./note');
 
+var _ = require('underscore');
+var moment = require('moment');
+
 // configure app
 app.use(morgan('dev')); // log requests to the console
 
@@ -24,6 +27,9 @@ app.use(function(req, res, next) {
 
 var port     = process.env.PORT || 4500; // set our port
 
+var SimClient = require("./lib/sim-client.js");
+
+var fs = require('fs');
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost/emberMongo'); // connect to our database
 var Goal     = require('./models/goal');
@@ -33,6 +39,16 @@ var Goal     = require('./models/goal');
 
 // create our router
 var router = express.Router();
+
+var config = {
+    keys : { 
+        access : "AKIAIBOSOKRRPTEHQVZA",
+        secret : "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"
+    },
+    region : "us-west-2"
+};
+
+var simClient = new SimClient(config);
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
@@ -46,26 +62,29 @@ router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
 
+router.get('/sims', function(req, res, next) {
+   var that = this;
+   simClient.getIssues({recurseRequests : true})
+    .status(["Open", "Resolved"])
+    .containingFolder("3dbef891-eb1c-4fbe-bca0-eac2d9e0a94a")
+    // .needByDate("2016-11-28T07:00:00.000Z", "2016-12-02T07:00:00.000Z")
+    .exec(function(error, data) {  
+		var statuses = [];
+		for(var i = 0; i < data.documents.length - 1; i++){
+			if(data.documents[i].status)
+				statuses.push(data.documents[i].status);
+		}
+        res.send(JSON.stringify({ numberOfDocuments: statuses.length }, null, 3));
+    }); 
+});
+
 // on routes that end in /goals
 // ----------------------------------------------------
 router.route('/goals')
+
 	// create a Goal (accessed at POST http://localhost:4500/goals)
 	.post(function(req, res) {
 		var goal = new Goal();		// create a new instance of the goal model
-
-
-		// number : Number,
-		// title: String,
-		// owner : String,
-		// duedate : Date,
-		// status : String,
-		// blockedreason : String,
-		// notes : String,
-		// team : { type : Array , "default" : [] },
-		// sims : { type : Array , "default" : [] }
-
-
-
 		if(!req.body.goal){
 			goal.title = req.body.title;  // set the goals name (comes from the request)
 			goal.owner = req.body.owner;
@@ -100,6 +119,16 @@ router.route('/goals')
 			// res.json(goals);
 		});
 	});
+
+
+
+
+
+
+
+
+
+
 
 router.route('/notes')
 	// create a Goal (accessed at POST http://localhost:4500/goals)
