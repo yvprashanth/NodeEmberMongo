@@ -8,6 +8,7 @@ export default DS.Model.extend({
     status : DS.attr('string'),
     blockedreason : DS.attr('string'),
     notes : DS.attr('string'),
-    sims : DS.hasMany('sim'), 
+    // sims : DS.hasMany('sim'), 
+    sims : DS.attr(), 
     team : DS.attr('string')
 });

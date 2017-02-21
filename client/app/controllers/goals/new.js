@@ -9,6 +9,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   statusStates : statusStates,
   statusState : statusStates[0],
+  names: ['foo', 'bar', 'baz'],
   isValid : function(){
     return true;
   }.property('model'),
@@ -22,6 +23,18 @@ export default Ember.Controller.extend({
     foo(state) {
         debugger;
         this.set('model.status', state);
-    }
+    },
+
+    addSim(newGoal){
+      debugger;
+      var newSim = this.store.createRecord('sim', {
+        link : 'https://guides.emberjs.com/v2.2.0/tutorial/ember-cli/',
+        team : 'SCPlat',
+        goal : newGoal
+      });
+      // var arrayOfSims = this.get('model').get('sims');
+      // arrayOfSims.push(newSim);
+      this.get('model').set('sims', newSim);
+    },
   }
 });
