@@ -9,7 +9,11 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   statusStates : statusStates,
   statusState : statusStates[0],
-  names: ['foo', 'bar', 'baz'],
+  names: Ember.A([]),
+
+  singleSimLink : '',
+  nameObserver : Ember.computed.alias('names'),
+
   isValid : function(){
     return true;
   }.property('model'),
@@ -27,14 +31,16 @@ export default Ember.Controller.extend({
 
     addSim(newGoal){
       debugger;
-      var newSim = this.store.createRecord('sim', {
-        link : 'https://guides.emberjs.com/v2.2.0/tutorial/ember-cli/',
-        team : 'SCPlat',
-        goal : newGoal
-      });
-      // var arrayOfSims = this.get('model').get('sims');
-      // arrayOfSims.push(newSim);
-      this.get('model').set('sims', newSim);
+      // var newSim = this.store.createRecord('sim', {
+      //   link : 'https://guides.emberjs.com/v2.2.0/tutorial/ember-cli/',
+      //   team : 'SCPlat',
+      //   goal : newGoal
+      // });
+      // var temp = this.get('names');
+      // temp.push("hello");
+      // this.set('names', temp);
+      this.get('names').addObject(newGoal);
+      // this.get('model').set('sims', newSim);
     },
   }
 });
