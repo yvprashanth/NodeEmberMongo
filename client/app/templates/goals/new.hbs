@@ -46,10 +46,6 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Sims</label>
         <div class="col-sm-10">
-            {{#each nameObserver as |name|}}
-                {{input type="text-area" value=name class="form-control" placeholder="Sim Link"}}
-            {{/each}}
-            <br />
             {{input type="text" class="form-control" placeholder="Sim Link" value=singleSimLink}}
             <button type="button" class="btn btn-default btn-sm" 
                 {{action 'addSim' singleSimLink}} >Add Another Sim
@@ -58,6 +54,7 @@
 
             {{#each nameObserver as |name|}}
                 {{name}}
+                <br/>
             {{/each}}
         </div>
     </div>

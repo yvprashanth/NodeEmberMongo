@@ -40,6 +40,7 @@ export default Ember.Controller.extend({
       // temp.push("hello");
       // this.set('names', temp);
       this.get('names').addObject(newGoal);
+      this.set('singleSimLink', '');
       // this.get('model').set('sims', newSim);
     },
   }
