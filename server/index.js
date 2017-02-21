@@ -110,7 +110,7 @@ router.route('/goals')
 		} else {
 			goal.title = req.body.goal.title;  // set the goals name (comes from the request)
 			goal.owner = req.body.goal.owner;
-			goal.owner = req.body.goal.owner;
+			goal.sims = req.body.goal.sims;
 			goal.status = req.body.goal.status;
 			goal.blockedreason = req.body.goal.blockedreason;
 			goal.duedate = req.body.goal.duedate;

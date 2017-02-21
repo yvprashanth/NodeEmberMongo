@@ -6,6 +6,7 @@ export default Ember.Route.extend({
   },
   
   model() {
+    this.controllerFor('goals.new').set('names', []);
     return this.store.createRecord('goal');
   },
 
@@ -16,7 +17,11 @@ export default Ember.Route.extend({
   actions: {
     saveGoal(newGoal) {
       debugger;
-      newGoal.save().then(() => this.transitionTo('goals.all'));
+      var that = this;
+      newGoal.set('sims', this.controllerFor('goals.new').get('names'));
+      newGoal.save().then(() => {
+        this.transitionTo('goals.all');
+      });
       // newGoal.save().then(() => this.transitionTo('goals'));
     },
 

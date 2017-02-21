@@ -24,6 +24,19 @@
       <p style="display: inline; font-weight: bold">Notes : </p>
       <p style="display: inline;"> {{goal.notes}}</p>
       <br />     
+
+      <p style="display: inline; font-weight: bold">Sims : </p>
+      <p style="display: inline;">
+       {{#each goal.sims as |name|}}
+        <ul>
+          <li>
+            <a target="_blank" href="{{unbound name}}">{{name}}</a>
+          </li>
+        </ul>
+       {{/each}}
+       </p>
+
+
     </div>
      <div class="panel-footer text-right">
           {{#link-to 'goals.edit' goal.id class='btn btn-success btn-xs'}}Edit{{/link-to}}
