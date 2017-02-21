@@ -43,5 +43,9 @@ export default Ember.Controller.extend({
       this.set('singleSimLink', '');
       // this.get('model').set('sims', newSim);
     },
+
+    deleteSim(goal){
+      debugger;
+    }
   }
 });

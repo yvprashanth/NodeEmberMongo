@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-var port     = process.env.PORT || 4500; // set our port
+var port  = process.env.PORT || 4500; // set our port
 
 var SimClient = require("./lib/sim-client.js");
 
@@ -40,10 +40,16 @@ var Goal     = require('./models/goal');
 // create our router
 var router = express.Router();
 
+var baseRoute = express.Router();
+
+baseRoute.get('/', function(req, res){
+	res.json({ message: 'hooray! welcome to our website!' });	
+});
+
 var config = {
     keys : { 
-        access : "AKIAIBOSOKRRPTEHQVZA",
-        secret : "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"
+        access : "AKIAJI4NTIZBLG7SRG7A",
+        secret : "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"
     },
     region : "us-west-2"
 };
@@ -62,10 +68,18 @@ router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
 
+router.get('/id', function(req, res){
+	simClient.getIssues()
+  	.aliases(["API-695", "API-696"])
+	.exec(function(error, data){
+		console.log('hello');
+		res.send(JSON.stringify({ result : data}));
+	});
+});
+
 router.get('/sims', function(req, res, next) {
    var that = this;
-   simClient.getIssues({recurseRequests : true})
-    .status(["Open", "Resolved"])
+   simClient.getIssues()
     .containingFolder("3dbef891-eb1c-4fbe-bca0-eac2d9e0a94a")
     // .needByDate("2016-11-28T07:00:00.000Z", "2016-12-02T07:00:00.000Z")
     .exec(function(error, data) {  
@@ -202,6 +216,7 @@ router.route('/goals/:goal_id')
 
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', router);
+app.use('/', baseRoute);
 
 // START THE SERVER
 // =============================================================================
