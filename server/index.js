@@ -135,15 +135,6 @@ router.route('/goals')
 	});
 
 
-
-
-
-
-
-
-
-
-
 router.route('/notes')
 	// create a Goal (accessed at POST http://localhost:4500/goals)
 	// get all the goals (accessed at GET http://localhost:4500/api/goals)
