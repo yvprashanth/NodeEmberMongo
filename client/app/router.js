@@ -16,6 +16,7 @@ Router.map(function() {
     this.route('all');
     this.route('edit', {path : '/:goal_id/edit'});
   });
+  this.route('note');
 });
 
 export default Router;

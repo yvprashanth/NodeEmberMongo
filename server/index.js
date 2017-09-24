@@ -27,8 +27,6 @@ app.use(function(req, res, next) {
 
 var port  = process.env.PORT || 4500; // set our port
 
-var SimClient = require("./lib/sim-client.js");
-
 var fs = require('fs');
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost/emberMongo'); // connect to our database
@@ -46,16 +44,6 @@ baseRoute.get('/', function(req, res){
 	res.json({ message: 'hooray! welcome to our website!' });	
 });
 
-var config = {
-    keys : { 
-        access : "AKIAJI4NTIZBLG7SRG7A",
-        secret : "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"
-    },
-    region : "us-west-2"
-};
-
-var simClient = new SimClient(config);
-
 // middleware to use for all requests
 router.use(function(req, res, next) {
 	// do logging
@@ -68,29 +56,6 @@ router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
 
-router.get('/id', function(req, res){
-	simClient.getIssues()
-  	.aliases(["API-695", "API-696"])
-	.exec(function(error, data){
-		console.log('hello');
-		res.send(JSON.stringify({ result : data}));
-	});
-});
-
-router.get('/sims', function(req, res, next) {
-   var that = this;
-   simClient.getIssues()
-    .containingFolder("3dbef891-eb1c-4fbe-bca0-eac2d9e0a94a")
-    // .needByDate("2016-11-28T07:00:00.000Z", "2016-12-02T07:00:00.000Z")
-    .exec(function(error, data) {  
-		var statuses = [];
-		for(var i = 0; i < data.documents.length - 1; i++){
-			if(data.documents[i].status)
-				statuses.push(data.documents[i].status);
-		}
-        res.send(JSON.stringify({ numberOfDocuments: statuses.length }, null, 3));
-    }); 
-});
 
 // on routes that end in /goals
 // ----------------------------------------------------
