@@ -11,3 +11,6 @@ ssh -i "key" ubuntu@ip
 
 To open up certain ports - do this 
 iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
+
+To Install Mongodb on AMI 
+http://www.jonathanhui.com/install-mongodb-amazon-linux
